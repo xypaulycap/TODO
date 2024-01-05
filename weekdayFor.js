@@ -11,3 +11,19 @@ for (let i = 0; i < daysOfWeek.length; i++) {
 }
 
 console.log(day); // Outputs: Tuesday
+
+
+
+app.post("/delete", function (req, res) {
+  const checkedItemId = req.body.checkbox;
+  const listName = req.body.listName;
+
+  Item.findByIdAndDelete(checkedItemId)
+    .then((result) => {
+      console.log("Document Deleted successfully:", result);
+    })
+    .catch((error) => {
+      console.error("Error Deleting documents:", error);
+    });
+  res.redirect("/");
+});
